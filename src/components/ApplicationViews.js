@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom"
 import React from "react"
 import { withRouter } from "react-router-dom"
-// import Register from "./auth/Register"
+import Register from "./auth/Register"
 
 
 
@@ -23,7 +23,7 @@ const ApplicationViews = () => {
                 path="/register" render={props => {
                     return (
                         <>
-                            <h1>Placeholder for Register</h1>
+                            <Register {...props} />
                         </>
                     )
                 }}
