@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import "./Login.css"
+import "./Auth.css"
 import useSimpleAuth from "./useSimpleAuth";
 
 const Login = props => {
-  const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const [credentials, setCredentials] = useState({ username: "lr2020", password: "Test123!" });
   const { login } = useSimpleAuth()
 
   const handleFieldChange = (evt) => {
@@ -32,14 +32,14 @@ const Login = props => {
         <input onChange={handleFieldChange} type="text"
           id="username"
           placeholder="Username"
-          required="" autoFocus="" />
+          required="" autoFocus="" value={credentials.username}/>
       </fieldset>
       <fieldset>
         <label htmlFor="password"> Password </label>
         <input onChange={handleFieldChange} type="password"
           id="password"
           placeholder="Password"
-          required="" autoFocus="" />
+          required="" autoFocus="" value={credentials.password}/>
       </fieldset>
       <fieldset>
         <button type="submit">

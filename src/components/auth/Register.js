@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import "./Auth.css"
 import useSimpleAuth from "./useSimpleAuth";
 
 const Register = props => {

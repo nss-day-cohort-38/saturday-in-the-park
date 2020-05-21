@@ -3,6 +3,7 @@ import React from "react"
 import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
 import Login from "./auth/Login"
+import ParkExplorer from "./home/ParkExplorer"
 
 
 
@@ -12,11 +13,7 @@ const ApplicationViews = () => {
 
             <Route
                 exact path="/" render={props => {
-                    return (
-                        <>
-                            <h1>Placeholder for Park areas and attractions</h1>
-                        </>
-                    )
+                    return <ParkExplorer {...props} />
                 }}
             />
 
