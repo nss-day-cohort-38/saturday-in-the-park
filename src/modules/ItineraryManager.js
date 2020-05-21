@@ -1,8 +1,8 @@
 const parkApiUrl = "http://localhost:8000"
 
 export default {
-  getParkAreas() {
-    return fetch(`${parkApiUrl}/parkareas`, {
+  getUserItinerary() {
+    return fetch(`${parkApiUrl}/itinerary`, {
       "method": "GET",
       "headers": {
         "Accept": "application/json",
@@ -10,10 +10,9 @@ export default {
       }
     })
       .then(response => response.json())
-
   },
-  getAttractions() {
-    return fetch(`${parkApiUrl}/attractions`, {
+  getItineraryItem(itineraryItemId) {
+    return fetch(`${parkApiUrl}/itinerary/${itineraryItemId}`, {
       "method": "GET",
       "headers": {
         "Accept": "application/json",
@@ -21,16 +20,24 @@ export default {
       }
     })
       .then(response => response.json())
-
   },
-  getAttractionsByArea(areaId) {
-    return fetch(`${parkApiUrl}/attractions?area=${areaId}`, {
-      "method": "GET",
+  updateItineraryItem(itineraryItemId, itineraryItem) {
+    return fetch(`${parkApiUrl}/itinerary/${itineraryItemId}`, {
+      "method": "PUT",
       "headers": {
+        "Content-Type": "application/json",
         "Accept": "application/json",
+        "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
+      },
+      body: JSON.stringify(itineraryItem)
+    })
+  },
+  deleteItineraryItem(itineraryItemId) {
+    return fetch(`${parkApiUrl}/itinerary/${itineraryItemId}`, {
+      "method": "DELETE",
+      "headers": {
         "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
       }
     })
-      .then(response => response.json())
   }
 }
