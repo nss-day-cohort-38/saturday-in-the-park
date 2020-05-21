@@ -2,6 +2,7 @@ import { Route } from "react-router-dom"
 import React from "react"
 import { withRouter } from "react-router-dom"
 import Register from "./auth/Register"
+import Login from "./auth/Login"
 
 
 
@@ -21,21 +22,13 @@ const ApplicationViews = () => {
 
             <Route
                 path="/register" render={props => {
-                    return (
-                        <>
-                            <Register {...props} />
-                        </>
-                    )
+                    return <Register {...props} />
                 }}
             />
 
             <Route
                 path="/login" render={props => {
-                    return (
-                        <>
-                            <h1>Placeholder for Login</h1>
-                        </>
-                    )
+                    return <Login {...props} />
                 }}
             />
 
