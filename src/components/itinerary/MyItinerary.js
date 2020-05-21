@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import "./MyItinerary.css"
 import ItineraryManager from "../../modules/ItineraryManager"
 import useSimpleAuth from "../auth/useSimpleAuth"
@@ -27,6 +28,9 @@ const MyItinerary = props => {
     return (
         <>
             <h2>Our Saturday at Kennywood Theme Park</h2>
+            <div>
+                <Link className="nav-link" to="/myitinerary/new">Add a Ride</Link>
+            </div>
             <div className="itineraryItems">
                 {
                     itineraryList.map((item) => {

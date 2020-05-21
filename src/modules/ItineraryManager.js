@@ -21,6 +21,17 @@ export default {
     })
       .then(response => response.json())
   },
+  createItineraryItem(itineraryItem) {
+    return fetch(`${parkApiUrl}/itinerary`, {
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
+      },
+      body: JSON.stringify(itineraryItem)
+    })
+  },
   updateItineraryItem(itineraryItemId, itineraryItem) {
     return fetch(`${parkApiUrl}/itinerary/${itineraryItemId}`, {
       "method": "PUT",
