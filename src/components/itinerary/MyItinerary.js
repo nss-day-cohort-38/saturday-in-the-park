@@ -36,6 +36,7 @@ const MyItinerary = props => {
                     itineraryList.map((item) => {
                         return <div key={item.id}>
                             {item.attraction.name} in {item.attraction.area.name} at {item.starttime}
+                            <img src={item.image} alt=""/>
                             <button onClick={() => {
                                 props.history.push(`/myitinerary/${item.id}/edit`)
                             }}>Edit</button>

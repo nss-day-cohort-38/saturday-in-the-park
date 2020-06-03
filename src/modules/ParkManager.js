@@ -5,8 +5,7 @@ export default {
     return fetch(`${parkApiUrl}/parkareas`, {
       "method": "GET",
       "headers": {
-        "Accept": "application/json",
-        "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
+        "Accept": "application/json"
       }
     })
       .then(response => response.json())
@@ -16,8 +15,7 @@ export default {
     return fetch(`${parkApiUrl}/attractions`, {
       "method": "GET",
       "headers": {
-        "Accept": "application/json",
-        "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
+        "Accept": "application/json"
       }
     })
       .then(response => response.json())
@@ -27,8 +25,7 @@ export default {
     return fetch(`${parkApiUrl}/attractions?area=${areaId}`, {
       "method": "GET",
       "headers": {
-        "Accept": "application/json",
-        "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
+        "Accept": "application/json"
       }
     })
       .then(response => response.json())

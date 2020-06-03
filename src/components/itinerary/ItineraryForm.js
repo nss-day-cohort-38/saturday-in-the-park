@@ -6,6 +6,7 @@ import ParkManager from "../../modules/ParkManager"
 const ItineraryForm = props => {
   const [itineraryItem, setItineraryItem] = useState({ startTime: 1, attractionId: 1 });
   const [attractions, setAttractions] = useState([])
+  const [image, setImage] = useState({ imageFile: "", imagePath: "Choose File" });
 
   const handleFieldChange = (evt) => {
     const stateToChange = { ...itineraryItem };
@@ -13,20 +14,29 @@ const ItineraryForm = props => {
     setItineraryItem(stateToChange);
   };
 
+  const handleFileUpload = e => {
+    setImage({ imageFile: e.target.files[0], imagePath: e.target.files[0].name });
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
 
-    const itineraryItemObj = {
-      "start_time": Number(itineraryItem.startTime),
-      "attraction_id": Number(itineraryItem.attractionId)
-    }
-
     if (props.match.params.itemId) {
+      const itineraryItemObj = {
+        "start_time": Number(itineraryItem.startTime),
+        "attraction_id": Number(itineraryItem.attractionId)
+      }
+
       ItineraryManager.updateItineraryItem(props.match.params.itemId, itineraryItemObj)
         .then(() => props.history.push("/myitinerary"))
     }
     else {
-      ItineraryManager.createItineraryItem(itineraryItemObj)
+      const formData = new FormData();
+      formData.append("image", image.imageFile, image.imagePath);
+      formData.append('start_time', itineraryItem.startTime);
+      formData.append('attraction_id', itineraryItem.attractionId);
+
+      ItineraryManager.createItineraryItem(formData)
         .then(() => props.history.push("/myitinerary"))
     }
 
@@ -53,7 +63,7 @@ const ItineraryForm = props => {
     <form className="form--login" onSubmit={handleSubmit}>
       <h1 className="h3 mb-3 font-weight-normal">Add new item to my Itinerary</h1>
       <fieldset>
-        <label htmlFor="attractionId">  </label>
+        <label htmlFor="attractionId">Attraction</label>
         <select
           className="form-control"
           id="attractionId"
@@ -72,6 +82,18 @@ const ItineraryForm = props => {
           id="startTime"
           required="" autoFocus="" value={itineraryItem.startTime} />
       </fieldset>
+      {!props.match.params.itemId > 0 &&
+        <>
+          <input
+            type='file'
+            id='customFile'
+            onChange={handleFileUpload}
+          />
+          <label htmlFor='customFile'>
+            {image.imagePath}
+          </label>
+        </>
+      }
       <fieldset>
         <button type="submit">Submit</button>
       </fieldset>

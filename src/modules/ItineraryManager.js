@@ -25,11 +25,10 @@ export default {
     return fetch(`${parkApiUrl}/itinerary`, {
       "method": "POST",
       "headers": {
-        "Content-Type": "application/json",
         "Accept": "application/json",
         "Authorization": `Token ${sessionStorage.getItem("kennywood-token")}`
       },
-      body: JSON.stringify(itineraryItem)
+      body: itineraryItem
     })
   },
   updateItineraryItem(itineraryItemId, itineraryItem) {
